@@ -26,20 +26,30 @@ public class Sampling {
 			}
 		}
 	}
-//	public static void ss(int N){
-//		System.out.println("srs");
-//		ArrayList sframe = frame(N);
-//		Scanner s = new Scanner(System.in);
-//		int n = s.nextInt();
-//		if(n>=N && n<=1){
-//			System.out.println("Invalid input");
-//		}else{
-//			int k = N/n;
-//			Random r = new Random();
-//			int sp = (int)(sframe.get(r.nextInt(sframe.size())));		//int pani akong pag accept
-//		}
-//		
-//	}
+	public static void ss(int N){
+		System.out.println("srs");
+		ArrayList sframe = frame(N);
+		Scanner s = new Scanner(System.in);
+		System.out.println("Input sample size:");
+		int n = s.nextInt();
+		if(n>=N && n<=1){
+			System.out.println("Invalid input");
+		}else{
+			int k = N/n;
+			Random r = new Random();
+			int sp = r.nextInt(sframe.size());	//starting point
+			System.out.println("Random Sample(Systematic Sampling)");
+			while(n!=0){
+				System.out.println(sframe.get(sp));
+				sp+=sp;
+				if(sp>N){
+					sp -= N;
+				}
+				n--;
+			}
+		}
+		
+	}
 	public static void sts(){
 		System.out.println("srs");
 	}
@@ -67,7 +77,7 @@ public class Sampling {
 				break;
 			case 2:
 				System.out.println("Enter population size:");
-				//ss(sc.nextInt());
+				ss(sc.nextInt());
 				break;
 			case 3:
 				sts();
