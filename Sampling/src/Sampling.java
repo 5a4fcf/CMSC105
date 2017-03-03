@@ -9,62 +9,101 @@ import java.util.Scanner;
 
 public class Sampling {
 	
-
+	/*
+	 * Simple Random Sampling
+	 */
 	public static void srs(int N){
+		
 		ArrayList sframe = frame(N);
-		System.out.println("Input sample size:");
 		Scanner s = new Scanner(System.in);
+		
+		System.out.println("Input sample size:");
+		
 		int n = s.nextInt();
+		
 		if(n>=N && n<=1){
+			
 			System.out.println("Invalid input");
+			
 		}else{
+			
 			Random r = new Random();
 			System.out.println("Result:");
+			
 			while(n!=0){
 				System.out.println(sframe.get(r.nextInt(sframe.size())));
 				n--;
 			}
 		}
+		
 	}
+	
+	
+	/*
+	 * Systematic Sampling
+	 */
 	public static void ss(int N){
+		
 		ArrayList sframe = frame(N);
 		Scanner s = new Scanner(System.in);
+		
 		System.out.println("Input sample size:");
+		
 		int n = s.nextInt();
+		
 		if(n>=N && n<=1){
+			
 			System.out.println("Invalid input");
+			
 		}else{
+			
 			int k = N/n;
 			Random r = new Random();
 			int sp = r.nextInt(k);	//starting point
 			System.out.println("Random Sample(Systematic Sampling)");
+			
 			while(n!=0){
+				
 				System.out.println(sframe.get(sp));
 				sp+=k;
-				if(sp>N){
-					sp -= N;
-				}
+				if(sp>N) {sp -= N;}
 				n--;
+				
 			}
 		}
 		
 	}
+	
+	
+	/*
+	 * Stratified Sampling
+	 */
 	public static void sts(int N){
+		
 		ArrayList sframe = frame(N);
 		for(int cnt = 0 ; cnt!=N ; ){
 			
 		}
 	}
 	
+	
+	/*
+	 * Population input / Sampling Frame
+	 */
 	public static ArrayList frame(int N){
+		
 		ArrayList frame = new ArrayList();
 		Scanner sn = new Scanner(System.in);
+		
 		for(int i = 0 ; i!= N ; i ++){
 			System.out.println("Index " + (i+1));
 			frame.add(sn.nextInt());
 		}
+		
 		return frame;
 	}
+	
+	
 	public static void main(String[] args){
 		
 		System.out.println("Basic Sampling Methods:");
