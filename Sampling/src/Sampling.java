@@ -1,10 +1,13 @@
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
 /*
  * ang invalid inputs ug 20% default wa gipangimplement 
  * wa pa sad ang type sa arraylist if ever character ra sya or number ang type chuchu
+ * LIMPYUHANAN PAAAAA!!!!
  */
 
 public class Sampling {
@@ -81,9 +84,46 @@ public class Sampling {
 	public static void sts(int N){
 		
 		ArrayList sframe = frame(N);
-		for(int cnt = 0 ; cnt!=N ; ){
+		ArrayList<ArrayList> strata = new ArrayList<ArrayList>();
+		Random r = new Random();
+		
+		Scanner s = new Scanner(System.in);
+		Collections.sort(sframe);
+
+		
+		System.out.println("Strata:");
+		for (int i = 0; i < N; i++) {
+	        int first = (int) sframe.get(i);
+	        int total = 1;
+	        ArrayList tmp = new ArrayList();
+	        tmp.add(sframe.get(i));
+	        while (i + 1 < sframe.size() && first == ((int)(sframe.get(i + 1)))) {
+	        	tmp.add(sframe.get(i));
+	            total++;
+	            i++;
+	        }
+	        strata.add(tmp);
+	        System.out.println("(" + first + total + ")"); 
+	        System.out.println(strata.size() + " " + tmp.size() + " " + tmp.get(0));
+	    }
+		
+		System.out.println("Please specify percentage of the items for each strata to be sampled randomly:");
+		int p;
+		do{
+			p = s.nextInt();
+		}while(p>=100 && p<=0);
+		
+		for(int cnt = 0 ; cnt < strata.size() ; cnt++){
+			//System.out.println(strata.get(cnt).size() + "  " + p);
+			int rss = (int) Math.ceil((float)( (strata.get(cnt)).size() * p ) / 100) ; //random sample size
+			System.out.println("Strata " + (cnt+1) + " (n = " + strata.get(cnt).size() + " )");
+			for(int ctr = 0 ; ctr < rss ; ctr++){
+				System.out.println("\t" + strata.get(cnt).get(r.nextInt(strata.get(cnt).size())));
+			}
 			
 		}
+		
+		
 	}
 	
 	
