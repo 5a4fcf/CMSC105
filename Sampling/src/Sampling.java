@@ -27,7 +27,6 @@ public class Sampling {
 		}
 	}
 	public static void ss(int N){
-		System.out.println("srs");
 		ArrayList sframe = frame(N);
 		Scanner s = new Scanner(System.in);
 		System.out.println("Input sample size:");
@@ -37,11 +36,11 @@ public class Sampling {
 		}else{
 			int k = N/n;
 			Random r = new Random();
-			int sp = r.nextInt(sframe.size());	//starting point
+			int sp = r.nextInt(k);	//starting point
 			System.out.println("Random Sample(Systematic Sampling)");
 			while(n!=0){
 				System.out.println(sframe.get(sp));
-				sp+=sp;
+				sp+=k;
 				if(sp>N){
 					sp -= N;
 				}
@@ -50,8 +49,11 @@ public class Sampling {
 		}
 		
 	}
-	public static void sts(){
-		System.out.println("srs");
+	public static void sts(int N){
+		ArrayList sframe = frame(N);
+		for(int cnt = 0 ; cnt!=N ; ){
+			
+		}
 	}
 	
 	public static ArrayList frame(int N){
@@ -80,7 +82,8 @@ public class Sampling {
 				ss(sc.nextInt());
 				break;
 			case 3:
-				sts();
+				System.out.println("Enter population size:");
+				sts(sc.nextInt());
 				break;
 			case 4:
 				break;
